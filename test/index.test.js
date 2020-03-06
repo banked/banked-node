@@ -50,12 +50,23 @@ describe("Banked", () => {
       expect(typeof banked.payments).toBe("object");
     });
 
-    it("and public payment methods", () => {
+    it("payment methods", () => {
       expect.assertions(4);
       expect(Object.keys(banked.payments).length).toBe(3);
       expect(typeof banked.payments.create).toBe("function");
       expect(typeof banked.payments.read).toBe("function");
       expect(typeof banked.payments.delete).toBe("function");
+    });
+
+    it("a webhooks object", () => {
+      expect.assertions(1);
+      expect(typeof banked.webhooks).toBe("object");
+    });
+
+    it("payment methods", () => {
+      expect.assertions(2);
+      expect(Object.keys(banked.webhooks).length).toBe(1);
+      expect(typeof banked.webhooks.validate).toBe("function");
     });
   });
 });

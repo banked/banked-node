@@ -3,6 +3,7 @@ import bootstrapClient from "./util/client";
 import create from "./payments/create";
 import read from "./payments/read";
 import del from "./payments/delete";
+import validate from "./webhooks/validate";
 
 class Banked {
   constructor(keys = {}) {
@@ -13,6 +14,9 @@ class Banked {
       create,
       read,
       delete: del
+    };
+    this.webhooks = {
+      validate
     };
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "generator-nod",
+  "name": "node-banked",
   "version": "0.0.1",
   "description": "My node module",
   "license": "MIT",
@@ -15,7 +15,9 @@
     "src"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "npm run build && jest",
+    "test:unit": "jest ./test/unit",
+    "test:e2e": "npm run build && jest ./test/e2e --config '{ \"collectCoverage\" : false}'",
     "coverage": "npm test -- --coverage",
     "postcoverage": "open-cli coverage/lcov-report/index.html",
     "lint": "eslint .",

@@ -21,4 +21,4 @@ class Banked {
   }
 }
 
-export default Banked;
+module.exports = Banked;

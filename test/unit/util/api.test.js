@@ -1,4 +1,4 @@
-import { constructAPIURI } from "../../src/util/api";
+import { constructAPIURI } from "../../../src/util/api";
 
 describe("API", () => {
   it("should construct the correct API path", () => {

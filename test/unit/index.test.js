@@ -1,4 +1,4 @@
-import Banked from "../src/index";
+import Banked from "../../src/index";
 
 describe("Banked", () => {
   it("should expose an instantiatable function", () => {

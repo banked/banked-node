@@ -1,5 +1,5 @@
 import axios from "axios";
-import bootstrapClient from "../../src/util/client";
+import bootstrapClient from "../../../src/util/client";
 
 jest.mock("axios");
 

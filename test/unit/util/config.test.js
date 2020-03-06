@@ -1,4 +1,4 @@
-import Config from "../../src/util/config";
+import Config from "../../../src/util/config";
 
 describe("Config", () => {
   let config;

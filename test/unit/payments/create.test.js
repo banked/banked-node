@@ -1,5 +1,5 @@
 import axios from "axios";
-import create from "../../src/payments/create";
+import create from "../../../src/payments/create";
 
 jest.mock("axios");
 

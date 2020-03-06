@@ -1,5 +1,5 @@
-import validate from "../../src/webhooks/validate";
-import buildWebhook from "../_helpers/webhook-fixture";
+import validate from "../../../src/webhooks/validate";
+import buildWebhook from "../../_helpers/webhook-fixture";
 
 describe("validateWebhook", () => {
   it("should return a function", () => {

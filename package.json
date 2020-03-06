@@ -1,5 +1,5 @@
 {
-  "name": "banked-node",
+  "name": "@banked/node",
   "version": "0.0.2",
   "description": "Node.js library for the Banked API",
   "license": "MIT",

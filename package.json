@@ -1,14 +1,14 @@
 {
   "name": "node-banked",
   "version": "0.0.1",
-  "description": "My node module",
+  "description": "A Node.js SDK for interacting with Banked",
   "license": "MIT",
-  "repository": "diegohaz/nod",
+  "repository": "banked/node-banked",
   "main": "dist/index.js",
   "author": {
-    "name": "Diego Haz",
-    "email": "hazdiego@gmail.com",
-    "url": "https://github.com/diegohaz"
+    "name": "Joe Pettersson",
+    "email": "joe@banked.com",
+    "url": "https://github.com/joe8bit"
   },
   "files": [
     "dist",
@@ -42,7 +42,8 @@
     ]
   },
   "keywords": [
-    "generator-nod"
+    "banked",
+    "open-banking"
   ],
   "dependencies": {
     "@hapi/joi": "17.1.0",

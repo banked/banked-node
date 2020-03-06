@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 import create from "../../src/payments/create";
 
-jest.mock('axios');
+jest.mock("axios");
 
 const getPaymentRequest = () => {
   const validPR = {
@@ -527,14 +527,15 @@ describe("createPayment", () => {
     expect.assertions(4);
     axios.post.mockResolvedValue({
       data: {
-        url: 'https://example.com/checkout/'
+        url: "https://example.com/checkout/"
       }
     });
     const res = await create(getPaymentRequest());
-    expect(res.data.url).toBe('https://example.com/checkout/');
+    expect(res.data.url).toBe("https://example.com/checkout/");
     expect(axios.post.mock.calls).toHaveLength(1);
-    expect(axios.post.mock.calls[0][0]).toBe('https://banked.me/api/v2/payment_sessions');
+    expect(axios.post.mock.calls[0][0]).toBe(
+      "https://banked.me/api/v2/payment_sessions"
+    );
     expect(axios.post.mock.calls[0][1]).toEqual(getPaymentRequest());
   });
-
 });

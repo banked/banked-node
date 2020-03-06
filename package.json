@@ -1,9 +1,9 @@
 {
-  "name": "node-banked",
+  "name": "banked-node",
   "version": "0.0.1",
-  "description": "A Node.js SDK for interacting with Banked",
+  "description": "Node.js library for the Banked API",
   "license": "MIT",
-  "repository": "banked/node-banked",
+  "repository": "banked/banked-node",
   "main": "dist/index.js",
   "author": {
     "name": "Joe Pettersson",

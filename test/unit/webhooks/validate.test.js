@@ -1,5 +1,5 @@
 import validate from "../../../src/webhooks/validate";
-import buildWebhook from "../../_helpers/webhook-fixture";
+import buildWebhook from "../../helpers/webhook-fixture";
 
 describe("validateWebhook", () => {
   it("should return a function", () => {
@@ -111,7 +111,7 @@ describe("validateWebhook", () => {
 
   it("should not include isWithinRange if no time_range is present", () => {
     const wh = buildWebhook();
-    delete wh.time_range
+    delete wh.time_range;
     const res = validate(wh);
     expect(res.isWithinRange).toBeUndefined();
   });

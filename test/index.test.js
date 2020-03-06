@@ -51,9 +51,10 @@ describe("Banked", () => {
     });
 
     it("and public payment methods", () => {
-      expect.assertions(2);
-      expect(Object.keys(banked.payments).length).toBe(1);
+      expect.assertions(3);
+      expect(Object.keys(banked.payments).length).toBe(2);
       expect(typeof banked.payments.create).toBe("function");
+      expect(typeof banked.payments.read).toBe("function");
     });
   });
 });

@@ -10,6 +10,7 @@
   "rules": {
     "no-underscore-dangle": "off",
     "no-new": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "import/prefer-default-export": "off"
   }
 }

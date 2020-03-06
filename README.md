@@ -82,7 +82,7 @@ const banked = new Banked({
 });
 
 const verification = await banked.webhooks.validate({
-	payload_header: '', // (String) The 'Banked-Signature' HTTP header from the webhook
+  payload_header: '', // (String) The 'Banked-Signature' HTTP header from the webhook
   payload: '', // (String) The body of the webhook
   signature: '', // (String) The signature key you uploaded to the Banked console
   time_range: { // An optional key, which validates if the request was signed within a prescribed period
@@ -91,8 +91,8 @@ const verification = await banked.webhooks.validate({
   }
 });
 // {
-//	isValid: true/false,
-//. isWithinRange: true/false // only returned if time_range is passed in
+//  isValid: true/false,
+//  isWithinRange: true/false // only returned if time_range is passed in
 // }
 ```
 

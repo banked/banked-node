@@ -1,9 +1,9 @@
-const axios = require('axios');
-const Banked = require('../../dist');
+const axios = require("axios");
+const Banked = require("../../dist");
 
-jest.mock('axios');
+jest.mock("axios");
 
-it('Banked should create a payment', async () => {
+it("Banked should create a payment", async () => {
   expect.assertions(1);
   axios.post.mockResolvedValue({
     data: {
@@ -40,5 +40,5 @@ it('Banked should create a payment', async () => {
       sort_code: "000000"
     }
   });
-  expect(payment.data.url).toBe('https://example.com/checkout/');
+  expect(payment.data.url).toBe("https://example.com/checkout/");
 });

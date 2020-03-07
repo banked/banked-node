@@ -10,7 +10,20 @@ const schema = Joi.object({
     .integer()
     .positive()
     .strict()
-    .optional()
+    .optional(),
+  proxy: Joi.object({
+    host: Joi.string().ip({
+      version: [
+        'ipv4',
+        'ipv6'
+      ]
+    }).required(),
+    port: Joi.number().strict().port().required(),
+    auth: Joi.object({
+      username: Joi.string().required(),
+      password: Joi.string().required()
+    }).optional()
+  }).optional()
 });
 
 const requestConfigValidator = input => {

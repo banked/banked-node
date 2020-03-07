@@ -92,4 +92,33 @@ describe("Client", () => {
     expect(axiosRetry.mock.calls).toHaveLength(1);
     expect(axiosRetry.mock.calls[0][1].retries).toBe(5);
   });
+
+  it("should allow the setting of network a network proxy", () => {
+    expect.assertions(1);
+    bootstrapClient(
+      {
+        api_key: "foo",
+        secret_key: "bar"
+      },
+      {
+        proxy: {
+          host: '127.0.0.1',
+          port: 9000,
+          auth: {
+            username: 'mikeymike',
+            password: 'rapunz3l'
+          }
+        }
+      }
+    );
+    const createConfig = axios.create.mock.calls[0][0];
+    expect(createConfig.proxy).toEqual({
+      host: '127.0.0.1',
+      port: 9000,
+      auth: {
+        username: 'mikeymike',
+        password: 'rapunz3l'
+      }
+    });
+  });
 });

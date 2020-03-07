@@ -158,6 +158,195 @@ describe("Banked", () => {
         }
       });
     });
+    describe("proxy", () => {
+      it("should throw if proxy.host not present", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                port: 9000,
+                auth: {
+                  username: 'mikeymike',
+                  password: 'rapunz3l'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.host\" is required'
+          );
+        }
+      });
+      it("should throw if proxy.host not an IP", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                host: 'not an ip',
+                port: 9000,
+                auth: {
+                  username: 'mikeymike',
+                  password: 'rapunz3l'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.host\" must be a valid ip address of one of the following versions [ipv4, ipv6] with a optional CIDR'
+          );
+        }
+      });
+      it("should throw if proxy.port not present", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                host: '127.0.0.1',
+                auth: {
+                  username: 'mikeymike',
+                  password: 'rapunz3l'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.port\" is required'
+          );
+        }
+      });
+      it("should throw if proxy.port not a number", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                host: '127.0.0.1',
+                port: '394',
+                auth: {
+                  username: 'mikeymike',
+                  password: 'rapunz3l'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.port\" must be a number'
+          );
+        }
+      });
+      it("should throw if proxy.port not a valid port", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                host: '127.0.0.1',
+                port: 222222222222,
+                auth: {
+                  username: 'mikeymike',
+                  password: 'rapunz3l'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.port\" must be a valid port'
+          );
+        }
+      });
+
+      it("should throw if proxy.auth.username is not passed", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                host: '127.0.0.1',
+                port: 80,
+                auth: {
+                  password: 'rapunz3l'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.auth.username\" is required'
+          );
+        }
+      });
+
+      it("should throw if proxy.auth.password is not passed", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              proxy: {
+                host: '127.0.0.1',
+                port: 80,
+                auth: {
+                  username: 'someusername'
+                }
+              }
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "proxy.auth.password\" is required'
+          );
+        }
+      });
+    });
   });
 
   describe("should expose a public api with", () => {

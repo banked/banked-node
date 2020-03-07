@@ -16,23 +16,61 @@ describe("Banked", () => {
     }).not.toThrow();
   });
 
-  it("should instantiate Config", () => {
-    expect.assertions(1);
-    const banked = new Banked({
-      api_key: "pk_9393844",
-      secret_key: "sk_293r29ru"
+  describe("should validate its key config", () => {
+    it("should throw if keys set with an empty object", () => {
+      expect.assertions(2);
+      try {
+        new Banked();
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty(
+          "message",
+          'ValidationError: "api_key" is required. "secret_key" is required'
+        );
+      }
     });
-    expect(banked.__config.keys).toEqual({
-      api_key: "pk_9393844",
-      secret_key: "sk_293r29ru"
-    });
-  });
 
-  it("should throw if no config is provided", () => {
-    expect.assertions(1);
-    expect(() => {
-      new Banked();
-    }).toThrow();
+    it("should throw if keys set with only one valid key", () => {
+      expect.assertions(4);
+      try {
+        new Banked({
+          api_key: "pk_9393844"
+        });
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty(
+          "message",
+          'ValidationError: "secret_key" is required'
+        );
+      }
+      try {
+        new Banked({
+          secret_key: "sk_9393844"
+        });
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty(
+          "message",
+          'ValidationError: "api_key" is required'
+        );
+      }
+    });
+
+    it("should throw if keys set in the wrong format", () => {
+      expect.assertions(2);
+      try {
+        new Banked({
+          api_key: "does not start with pk_",
+          secret_key: "does not start with sk_"
+        });
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty(
+          "message",
+          'ValidationError: "api_key" with value "does not start with pk_" fails to match the required pattern: /^pk_/i. "secret_key" with value "does not start with sk_" fails to match the required pattern: /^sk_/i'
+        );
+      }
+    });
   });
 
   describe("should expose a public api with", () => {

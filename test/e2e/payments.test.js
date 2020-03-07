@@ -1,15 +1,35 @@
 const axios = require("axios");
+const { bootstrapClient } = require("../../src/util/client");
 const Banked = require("../../dist");
 
 jest.mock("axios");
 
-it("Banked should create a payment", async () => {
-  expect.assertions(1);
-  axios.post.mockResolvedValue({
+let postMock;
+
+beforeAll(() => {
+  postMock = jest.fn().mockResolvedValue({
     data: {
       url: "https://example.com/checkout/"
     }
   });
+  axios.create.mockImplementation(() => {
+    return {
+      interceptors: {
+        request: {
+          use: jest.fn()
+        }
+      },
+      post: postMock
+    };
+  });
+  bootstrapClient({
+    api_key: "foo",
+    secret_key: "bar"
+  });
+});
+
+it("Banked should create a payment", async () => {
+  expect.assertions(1);
   const banked = new Banked({
     api_key: "pk_9393844",
     secret_key: "sk_293r29ru"

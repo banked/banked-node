@@ -1,13 +1,13 @@
-import axios from "axios";
+import { getClient } from "../util/client";
 import paymentRequestValidator from "../validators/payment-request";
-import { constructAPIURI } from "../util/api";
 
 const create = (paymentRequest = {}) => {
+  const client = getClient();
   const { value, error } = paymentRequestValidator(paymentRequest);
   if (error) {
     throw new Error(error);
   }
-  return axios.post(constructAPIURI("/payment_sessions"), value);
+  return client.post("/payment_sessions", value);
 };
 
 export default create;

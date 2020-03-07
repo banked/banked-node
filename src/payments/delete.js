@@ -1,13 +1,13 @@
-import axios from "axios";
+import { getClient } from "../util/client";
 import paymentIDValidator from "../validators/payment-id";
-import { constructAPIURI } from "../util/api";
 
 const del = (paymentID = "") => {
+  const client = getClient();
   const { value, error } = paymentIDValidator(paymentID);
   if (error) {
     throw new Error(error);
   }
-  return axios.delete(constructAPIURI(`/payment_sessions/${value}`));
+  return client.delete(`/payment_sessions/${value}`);
 };
 
 export default del;

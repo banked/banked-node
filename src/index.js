@@ -1,5 +1,5 @@
 // Setup
-import bootstrapClient from "./util/client";
+import { bootstrapClient } from "./util/client";
 import keysValidator from "./validators/keys";
 // Payments
 import create from "./payments/create";

@@ -1,13 +1,24 @@
 import axios from "axios";
 
+let instance;
+
 const bootstrapClient = keys => {
-  axios.interceptors.request.use(config => {
+  instance = axios.create({
+    baseURL: "https://banked.me/api/v2",
+    timeout: 1000
+  });
+  instance.interceptors.request.use(config => {
     config.auth = {
       username: keys.api_key,
       password: keys.secret_key
     };
     return config;
   });
+  return instance;
 };
 
-export default bootstrapClient;
+const getClient = () => {
+  return instance;
+};
+
+export { bootstrapClient, getClient };

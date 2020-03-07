@@ -15,7 +15,7 @@
     "src"
   ],
   "scripts": {
-    "test": "npm run build && jest",
+    "test": "npm run build && jest --verbose",
     "test:unit": "jest ./test/unit",
     "test:e2e": "npm run build && jest ./test/e2e --config '{ \"collectCoverage\" : false}'",
     "coverage": "npm test -- --coverage",

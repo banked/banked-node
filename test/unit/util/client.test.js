@@ -1,7 +1,9 @@
 import axios from "axios";
+import axiosRetry from "axios-retry";
 import { bootstrapClient, getClient } from "../../../src/util/client";
 
 jest.mock("axios");
+jest.mock("axios-retry");
 
 describe("Client", () => {
   let useMock;
@@ -61,15 +63,33 @@ describe("Client", () => {
 
   it("should allow the setting of a custom timeout", () => {
     expect.assertions(2);
-    bootstrapClient({
-      api_key: "foo",
-      secret_key: "bar"
-    }, {
-      timeout: 10000
-    });
+    bootstrapClient(
+      {
+        api_key: "foo",
+        secret_key: "bar"
+      },
+      {
+        timeout: 10000
+      }
+    );
     expect(axios.create.mock.calls).toHaveLength(1);
 
     const createConfig = axios.create.mock.calls[0][0];
     expect(createConfig.timeout).toBe(10000);
+  });
+
+  it("should allow the setting of network retries", () => {
+    expect.assertions(2);
+    bootstrapClient(
+      {
+        api_key: "foo",
+        secret_key: "bar"
+      },
+      {
+        maxNetworkRetries: 5
+      }
+    );
+    expect(axiosRetry.mock.calls).toHaveLength(1);
+    expect(axiosRetry.mock.calls[0][1].retries).toBe(5);
   });
 });

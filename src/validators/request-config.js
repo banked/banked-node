@@ -5,6 +5,11 @@ const schema = Joi.object({
     .integer()
     .positive()
     .strict()
+    .optional(),
+  maxNetworkRetries: Joi.number()
+    .integer()
+    .positive()
+    .strict()
     .optional()
 });
 

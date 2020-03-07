@@ -78,34 +78,82 @@ describe("Banked", () => {
       it("should throw if not a number", () => {
         expect.assertions(2);
         try {
-          new Banked({
-            api_key: "pk_9393844",
-            secret_key: "sk_293r29ru"
-          }, {
-            timeout: '1000'
-          });
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              timeout: "1000"
+            }
+          );
         } catch (error) {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: \"timeout\" must be a number'
+            'ValidationError: "timeout" must be a number'
           );
         }
       });
       it("should be >0", () => {
         expect.assertions(2);
         try {
-          new Banked({
-            api_key: "pk_9393844",
-            secret_key: "sk_293r29ru"
-          }, {
-            timeout: 0
-          });
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              timeout: 0
+            }
+          );
         } catch (error) {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: \"timeout\" must be a positive number'
+            'ValidationError: "timeout" must be a positive number'
+          );
+        }
+      });
+    });
+    describe("maxNetworkRetries", () => {
+      it("should throw if not a number", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              maxNetworkRetries: "5"
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "maxNetworkRetries" must be a number'
+          );
+        }
+      });
+      it("should be >0", () => {
+        expect.assertions(2);
+        try {
+          new Banked(
+            {
+              api_key: "pk_9393844",
+              secret_key: "sk_293r29ru"
+            },
+            {
+              maxNetworkRetries: 0
+            }
+          );
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: "maxNetworkRetries" must be a positive number'
           );
         }
       });

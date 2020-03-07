@@ -73,6 +73,45 @@ describe("Banked", () => {
     });
   });
 
+  describe("should validate its requestConfig, if present", () => {
+    describe("timeouts", () => {
+      it("should throw if not a number", () => {
+        expect.assertions(2);
+        try {
+          new Banked({
+            api_key: "pk_9393844",
+            secret_key: "sk_293r29ru"
+          }, {
+            timeout: '1000'
+          });
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: \"timeout\" must be a number'
+          );
+        }
+      });
+      it("should be >0", () => {
+        expect.assertions(2);
+        try {
+          new Banked({
+            api_key: "pk_9393844",
+            secret_key: "sk_293r29ru"
+          }, {
+            timeout: 0
+          });
+        } catch (error) {
+          expect(error).toBeInstanceOf(Error);
+          expect(error).toHaveProperty(
+            "message",
+            'ValidationError: \"timeout\" must be a positive number'
+          );
+        }
+      });
+    });
+  });
+
   describe("should expose a public api with", () => {
     let banked;
 

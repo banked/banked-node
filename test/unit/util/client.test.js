@@ -19,6 +19,10 @@ describe("Client", () => {
     });
   });
 
+  afterEach(() => {
+    axios.create.mockReset();
+  });
+
   it("should create an instance of axios with the correct config", () => {
     expect.assertions(3);
     bootstrapClient({
@@ -29,7 +33,7 @@ describe("Client", () => {
 
     const createConfig = axios.create.mock.calls[0][0];
     expect(createConfig.baseURL).toBe("https://banked.me/api/v2");
-    expect(createConfig.timeout).toBe(1000);
+    expect(createConfig.timeout).toBe(3000);
   });
 
   it("should add an interceptor to axios for global auth", () => {
@@ -53,5 +57,19 @@ describe("Client", () => {
       secret_key: "bar"
     });
     expect(getClient().interceptors).toBeTruthy();
+  });
+
+  it("should allow the setting of a custom timeout", () => {
+    expect.assertions(2);
+    bootstrapClient({
+      api_key: "foo",
+      secret_key: "bar"
+    }, {
+      timeout: 10000
+    });
+    expect(axios.create.mock.calls).toHaveLength(1);
+
+    const createConfig = axios.create.mock.calls[0][0];
+    expect(createConfig.timeout).toBe(10000);
   });
 });

@@ -1,5 +1,8 @@
 # banked-node
 
+[![Version](https://img.shields.io/npm/v/banked/node)](https://www.npmjs.com/package/@banked/node)
+[![Build Status](https://img.shields.io/github/workflow/status/banked/banked-node/ci)](https://github.com/banked/banked-node/actions)
+
 The Banked Node library provides convenient access to the Banked API from applications written in server-side JavaScript.
 
 ## Installation

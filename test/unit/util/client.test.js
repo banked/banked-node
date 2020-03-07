@@ -102,22 +102,22 @@ describe("Client", () => {
       },
       {
         proxy: {
-          host: '127.0.0.1',
+          host: "127.0.0.1",
           port: 9000,
           auth: {
-            username: 'mikeymike',
-            password: 'rapunz3l'
+            username: "mikeymike",
+            password: "rapunz3l"
           }
         }
       }
     );
     const createConfig = axios.create.mock.calls[0][0];
     expect(createConfig.proxy).toEqual({
-      host: '127.0.0.1',
+      host: "127.0.0.1",
       port: 9000,
       auth: {
-        username: 'mikeymike',
-        password: 'rapunz3l'
+        username: "mikeymike",
+        password: "rapunz3l"
       }
     });
   });

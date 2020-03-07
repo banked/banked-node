@@ -171,8 +171,8 @@ describe("Banked", () => {
               proxy: {
                 port: 9000,
                 auth: {
-                  username: 'mikeymike',
-                  password: 'rapunz3l'
+                  username: "mikeymike",
+                  password: "rapunz3l"
                 }
               }
             }
@@ -181,7 +181,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.host\" is required'
+            'ValidationError: "proxy.host" is required'
           );
         }
       });
@@ -195,11 +195,11 @@ describe("Banked", () => {
             },
             {
               proxy: {
-                host: 'not an ip',
+                host: "not an ip",
                 port: 9000,
                 auth: {
-                  username: 'mikeymike',
-                  password: 'rapunz3l'
+                  username: "mikeymike",
+                  password: "rapunz3l"
                 }
               }
             }
@@ -208,7 +208,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.host\" must be a valid ip address of one of the following versions [ipv4, ipv6] with a optional CIDR'
+            'ValidationError: "proxy.host" must be a valid ip address of one of the following versions [ipv4, ipv6] with a optional CIDR'
           );
         }
       });
@@ -222,10 +222,10 @@ describe("Banked", () => {
             },
             {
               proxy: {
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 auth: {
-                  username: 'mikeymike',
-                  password: 'rapunz3l'
+                  username: "mikeymike",
+                  password: "rapunz3l"
                 }
               }
             }
@@ -234,7 +234,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.port\" is required'
+            'ValidationError: "proxy.port" is required'
           );
         }
       });
@@ -248,11 +248,11 @@ describe("Banked", () => {
             },
             {
               proxy: {
-                host: '127.0.0.1',
-                port: '394',
+                host: "127.0.0.1",
+                port: "394",
                 auth: {
-                  username: 'mikeymike',
-                  password: 'rapunz3l'
+                  username: "mikeymike",
+                  password: "rapunz3l"
                 }
               }
             }
@@ -261,7 +261,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.port\" must be a number'
+            'ValidationError: "proxy.port" must be a number'
           );
         }
       });
@@ -275,11 +275,11 @@ describe("Banked", () => {
             },
             {
               proxy: {
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 port: 222222222222,
                 auth: {
-                  username: 'mikeymike',
-                  password: 'rapunz3l'
+                  username: "mikeymike",
+                  password: "rapunz3l"
                 }
               }
             }
@@ -288,7 +288,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.port\" must be a valid port'
+            'ValidationError: "proxy.port" must be a valid port'
           );
         }
       });
@@ -303,10 +303,10 @@ describe("Banked", () => {
             },
             {
               proxy: {
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 port: 80,
                 auth: {
-                  password: 'rapunz3l'
+                  password: "rapunz3l"
                 }
               }
             }
@@ -315,7 +315,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.auth.username\" is required'
+            'ValidationError: "proxy.auth.username" is required'
           );
         }
       });
@@ -330,10 +330,10 @@ describe("Banked", () => {
             },
             {
               proxy: {
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 port: 80,
                 auth: {
-                  username: 'someusername'
+                  username: "someusername"
                 }
               }
             }
@@ -342,7 +342,7 @@ describe("Banked", () => {
           expect(error).toBeInstanceOf(Error);
           expect(error).toHaveProperty(
             "message",
-            'ValidationError: "proxy.auth.password\" is required'
+            'ValidationError: "proxy.auth.password" is required'
           );
         }
       });

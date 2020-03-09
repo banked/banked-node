@@ -15,7 +15,7 @@
     "src"
   ],
   "scripts": {
-    "test": "npm run build && jest",
+    "test": "npm run build && jest --verbose",
     "test:unit": "jest ./test/unit",
     "test:e2e": "npm run build && jest ./test/e2e --config '{ \"collectCoverage\" : false}'",
     "coverage": "npm test -- --coverage",
@@ -45,6 +45,7 @@
   "dependencies": {
     "@hapi/joi": "17.1.0",
     "axios": "0.19.2",
+    "axios-retry": "3.1.2",
     "date-fns": "2.10.0"
   },
   "devDependencies": {

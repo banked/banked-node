@@ -29,6 +29,29 @@ const banked = new Banked({
 
 All of node libraries public methods throw with a `ValidationError` when called with incorrect arguments.
 
+### Network configuration
+
+Banked's Node library optionally takes a global network configuration object as it's second paramter. This implements: a custom timeout period; an automatic retry policy; and/or configures an HTTP proxy. 
+
+```javascript
+const Banked = require('@banked/node');
+const banked = new Banked({
+  api_key: 'Your API key',
+  secret_key: 'Your secret key'
+}, {
+  timeout: 5000, // (optional) defaults to 3000
+  maxNetworkRetries: 5, //(optional) defaults to 0,
+  proxy: { // (optional, but contains required properties if configured)
+    host: '127.0.0.1', // (required, string) a valid IPv4 or IPv6 string, with optional CIDR
+    port: 8080, // (required, string) a valid port
+    auth: { // (optional, but contains required properties if configured)
+      username: 'frodobaggins', // (required, string)
+      password: '4TheShire' // (required, string)
+    }
+  }
+});
+```
+
 ### Payments
 
 The Banked Node library allows you to create, read and delete payments with the Banked API. All of the payment methods return a promise (sourced from the [axios](https://github.com/axios/axios) client).

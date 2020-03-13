@@ -34,32 +34,6 @@ describe("readPayment", () => {
     expect(typeof read).toBe("function");
   });
 
-  it("should require a paymentID", () => {
-    expect.assertions(2);
-    try {
-      read();
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error).toHaveProperty(
-        "message",
-        'ValidationError: "value" is not allowed to be empty'
-      );
-    }
-  });
-
-  it("should require a valid GUID as a paymentID", () => {
-    expect.assertions(2);
-    try {
-      read("something not a GUID");
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error).toHaveProperty(
-        "message",
-        'ValidationError: "value" must be a valid GUID'
-      );
-    }
-  });
-
   it("should send the request correctly", async () => {
     expect.assertions(3);
     const res = await read("70f7a5e9-cca0-4147-8a6a-10c598dc0aeb");

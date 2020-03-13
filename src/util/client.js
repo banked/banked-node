@@ -1,11 +1,14 @@
 import axios from "axios";
+import axiosRetry from "axios-retry";
 
 let instance;
 
-const bootstrapClient = keys => {
+const bootstrapClient = (keys, requestConfig) => {
   instance = axios.create({
     baseURL: "https://banked.me/api/v2",
-    timeout: 1000
+    timeout:
+      requestConfig && requestConfig.timeout ? requestConfig.timeout : 3000,
+    proxy: requestConfig && requestConfig.proxy ? requestConfig.proxy : {}
   });
   instance.interceptors.request.use(config => {
     config.auth = {
@@ -14,6 +17,12 @@ const bootstrapClient = keys => {
     };
     return config;
   });
+  if (requestConfig && requestConfig.maxNetworkRetries) {
+    axiosRetry(instance, {
+      retries: requestConfig.maxNetworkRetries,
+      retryDelay: axiosRetry.exponentialDelay
+    });
+  }
   return instance;
 };
 

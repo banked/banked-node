@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/banked/banked-node/compare/v0.0.8...v0.0.9) (2020-03-14)
+
+
+
 ### [0.0.8](https://github.com/banked/banked-node/compare/v0.0.5...v0.0.8) (2020-03-13)
 
 

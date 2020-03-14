@@ -35,36 +35,6 @@ describe("validateWebhook", () => {
       }
     });
 
-    it("signature must be 64 bytes", () => {
-      expect.assertions(2);
-      try {
-        const wh = buildWebhook();
-        wh.signature = "shorter";
-        validate(wh);
-      } catch (error) {
-        expect(error).toBeInstanceOf(Error);
-        expect(error).toHaveProperty(
-          "message",
-          'ValidationError: "signature" length must be 64 characters long'
-        );
-      }
-    });
-    it("signature must be alphanumeric", () => {
-      expect.assertions(2);
-      try {
-        const wh = buildWebhook();
-        wh.signature =
-          "_)(*faa57b4a0182cceb80366ffc70b4cc2d55e4baeeea37cc889c826c2c7ed8";
-        validate(wh);
-      } catch (error) {
-        expect(error).toBeInstanceOf(Error);
-        expect(error).toHaveProperty(
-          "message",
-          'ValidationError: "signature" must only contain alpha-numeric characters'
-        );
-      }
-    });
-
     it("signature must contain start and end if it's passed", () => {
       expect.assertions(2);
       try {

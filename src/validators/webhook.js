@@ -5,10 +5,7 @@ const schema = Joi.object({
     .regex(/\./)
     .required(),
   payload: Joi.string().required(),
-  signature: Joi.string()
-    .length(64)
-    .alphanum()
-    .required(),
+  signature: Joi.string().required(),
   time_range: Joi.object({
     start: Joi.string()
       .isoDate()

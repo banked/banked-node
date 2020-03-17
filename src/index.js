@@ -5,6 +5,9 @@ import keysValidator from "./validators/keys";
 import create from "./payments/create";
 import read from "./payments/read";
 import del from "./payments/delete";
+// Batch Payments
+import createBatch from "./payments/batch/create";
+import readBatch from "./payments/batch/read";
 // Webhooks
 import validate from "./webhooks/validate";
 
@@ -18,7 +21,11 @@ class Banked {
     this.payments = {
       create,
       read,
-      delete: del
+      delete: del,
+      batch: {
+        create: createBatch,
+        read: readBatch
+      }
     };
     this.webhooks = {
       validate

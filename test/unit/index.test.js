@@ -105,10 +105,21 @@ describe("Banked", () => {
       expect(typeof banked.webhooks).toBe("object");
     });
 
-    it("payment methods", () => {
+    it("webhook methods", () => {
       expect.assertions(2);
       expect(Object.keys(banked.webhooks).length).toBe(1);
       expect(typeof banked.webhooks.validate).toBe("function");
+    });
+
+    it("a providers object", () => {
+      expect.assertions(1);
+      expect(typeof banked.webhooks).toBe("object");
+    });
+
+    it("providers methods", () => {
+      expect.assertions(2);
+      expect(Object.keys(banked.providers).length).toBe(1);
+      expect(typeof banked.providers.read).toBe("function");
     });
   });
 });

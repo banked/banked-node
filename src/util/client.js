@@ -5,7 +5,7 @@ let instance;
 const bootstrapClient = keys => {
   instance = axios.create({
     baseURL: "https://banked.me/api/v2",
-    timeout: 1000
+    timeout: 3000
   });
   instance.interceptors.request.use(config => {
     config.auth = {

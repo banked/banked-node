@@ -10,6 +10,8 @@ import createBatch from "./payments/batch/create";
 import readBatch from "./payments/batch/read";
 // Webhooks
 import validate from "./webhooks/validate";
+// Providers
+import readProviders from "./providers/read";
 
 class Banked {
   constructor(keys = {}) {
@@ -29,6 +31,9 @@ class Banked {
     };
     this.webhooks = {
       validate
+    };
+    this.providers = {
+      read: readProviders
     };
   }
 }

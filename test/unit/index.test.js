@@ -117,8 +117,10 @@ describe("Banked", () => {
     });
 
     it("providers methods", () => {
-      expect.assertions(2);
-      expect(Object.keys(banked.providers).length).toBe(1);
+      expect.assertions(3);
+      expect(Object.keys(banked.providers).length).toBe(2);
+      expect(typeof banked.providers.list).toBe("function");
+      // Legacy, can be removed at next MAJOR version.
       expect(typeof banked.providers.read).toBe("function");
     });
 

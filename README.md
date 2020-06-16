@@ -99,6 +99,12 @@ const verification = await banked.webhooks.validate({
 // }
 ```
 
+### Bank Accounts
+
+```javascript
+const bankAccounts = await banked.bankAccounts.list();
+````
+
 ## Development
 
 ### Commands
@@ -122,4 +128,4 @@ It'll automatically run `test`, `lint`, `docs`, `build`, generate `CHANGELOG.md`
 
 ## License
 
-MIT 
+MIT

@@ -28,8 +28,8 @@ describe("Client", () => {
     expect(axios.create.mock.calls).toHaveLength(1);
 
     const createConfig = axios.create.mock.calls[0][0];
-    expect(createConfig.baseURL).toBe("https://banked.me/api/v2");
-    expect(createConfig.timeout).toBe(1000);
+    expect(createConfig.baseURL).toBe("https://api.banked.com/v2");
+    expect(createConfig.timeout).toBe(3000);
   });
 
   it("should add an interceptor to axios for global auth", () => {

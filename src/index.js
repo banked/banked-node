@@ -37,9 +37,9 @@ class Banked {
     this.providers = {
       read: readProviders
     };
-    this.bankAccounts {
+    this.bankAccounts = {
       list: listBankAccounts
-    }
+    };
   }
 }
 

@@ -121,5 +121,16 @@ describe("Banked", () => {
       expect(Object.keys(banked.providers).length).toBe(1);
       expect(typeof banked.providers.read).toBe("function");
     });
+
+    it("a bank accounts object", () => {
+      expect.assertions(1);
+      expect(typeof banked.bankAccounts).toBe("object");
+    });
+
+    it("bank accounts methods", () => {
+      expect.assertions(2);
+      expect(Object.keys(banked.bankAccounts).length).toBe(1);
+      expect(typeof banked.bankAccounts.list).toBe("function");
+    });
   });
 });

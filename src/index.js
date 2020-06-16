@@ -11,7 +11,9 @@ import readBatch from "./payments/batch/read";
 // Webhooks
 import validate from "./webhooks/validate";
 // Providers
-import readProviders from "./providers/read";
+import listProviders from "./providers/list";
+// Bank Accounts
+import listBankAccounts from "./bank_accounts/list";
 
 class Banked {
   constructor(keys = {}) {
@@ -33,7 +35,11 @@ class Banked {
       validate
     };
     this.providers = {
-      read: readProviders
+      read: listProviders,
+      list: listProviders
+    };
+    this.bankAccounts = {
+      list: listBankAccounts
     };
   }
 }

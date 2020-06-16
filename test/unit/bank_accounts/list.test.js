@@ -1,10 +1,10 @@
 import axios from "axios";
 import { bootstrapClient } from "../../../src/util/client";
-import read from "../../../src/providers/read";
+import read from "../../../src/bank_accounts/list";
 
 jest.mock("axios");
 
-describe("readProviders", () => {
+describe("listBankAccounts", () => {
   let getMock;
 
   beforeAll(() => {
@@ -39,6 +39,6 @@ describe("readProviders", () => {
     const res = await read();
     expect(res.data.foo).toBe("bar");
     expect(getMock.mock.calls).toHaveLength(1);
-    expect(getMock.mock.calls[0][0]).toBe("/providers");
+    expect(getMock.mock.calls[0][0]).toBe("/bank_accounts/");
   });
 });

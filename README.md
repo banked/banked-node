@@ -119,12 +119,17 @@ $ npm run build # generate docs and transpile code
 
 ### Publish
 
+Run the following commands to release a new version to NPM.
+
 ```sh
-$ npm release
+$ npm run release
+$ npm run publish
 $ npm publish
 ```
 
 It'll automatically run `test`, `lint`, `docs`, `build`, generate `CHANGELOG.md`, and push commits and tags to the remote repository.
+
+Currently [@Joe8Bit](https://github.com/joe8bit) and [@tomwaddington](https://github.com/tomwaddington) have release bits.
 
 ## License
 

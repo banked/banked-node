@@ -10,6 +10,10 @@ import createBatch from "./payments/batch/create";
 import readBatch from "./payments/batch/read";
 // Webhooks
 import validate from "./webhooks/validate";
+import createWebhook from "./webhooks/create";
+import listWebhooks from "./webhooks/list";
+import deleteWebhook from "./webhooks/delete";
+
 // Providers
 import listProviders from "./providers/list";
 // Bank Accounts
@@ -32,6 +36,9 @@ class Banked {
       }
     };
     this.webhooks = {
+      create: createWebhook,
+      delete: deleteWebhook,
+      list: listWebhooks,
       validate
     };
     this.providers = {

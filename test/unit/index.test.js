@@ -106,9 +106,12 @@ describe("Banked", () => {
     });
 
     it("webhook methods", () => {
-      expect.assertions(2);
-      expect(Object.keys(banked.webhooks).length).toBe(1);
+      expect.assertions(5);
+      expect(Object.keys(banked.webhooks).length).toBe(4);
+      expect(typeof banked.webhooks.delete).toBe("function");
+      expect(typeof banked.webhooks.create).toBe("function");
       expect(typeof banked.webhooks.validate).toBe("function");
+      expect(typeof banked.webhooks.list).toBe("function");
     });
 
     it("a providers object", () => {

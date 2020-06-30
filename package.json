@@ -1,6 +1,6 @@
 {
   "name": "@banked/node",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Node.js library for the Banked API",
   "license": "MIT",
   "repository": "banked/banked-node",

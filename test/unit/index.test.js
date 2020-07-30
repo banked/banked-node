@@ -25,7 +25,7 @@ describe("Banked", () => {
         expect(error).toBeInstanceOf(Error);
         expect(error).toHaveProperty(
           "message",
-          'ValidationError: "api_key" is required. "secret_key" is required'
+          'ValidationError: "value" must contain at least one of [api_key, access_token]'
         );
       }
     });
@@ -40,7 +40,7 @@ describe("Banked", () => {
         expect(error).toBeInstanceOf(Error);
         expect(error).toHaveProperty(
           "message",
-          'ValidationError: "secret_key" is required'
+          'ValidationError: "api_key" missing required peer "secret_key"'
         );
       }
       try {
@@ -51,7 +51,7 @@ describe("Banked", () => {
         expect(error).toBeInstanceOf(Error);
         expect(error).toHaveProperty(
           "message",
-          'ValidationError: "api_key" is required'
+          'ValidationError: "value" must contain at least one of [api_key, access_token]'
         );
       }
     });

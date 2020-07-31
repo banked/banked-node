@@ -27,6 +27,16 @@ const banked = new Banked({
 });
 ```
 
+Alternatively, you can configure access using an OAuth access token.
+
+```javascript
+const Banked = require('@banked/node');
+const banked = new Banked({
+  access_token: 'Your access token'
+});
+```
+
+
 All of node libraries public methods throw with a `ValidationError` when called with incorrect arguments.
 
 ### Payments

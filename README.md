@@ -83,6 +83,8 @@ const response = await banked.payments.delete('1ae1ce03-dfa9-4593-b487-65c656991
 
 Banked's payments returns a [`paymentSession`](https://banked.com/developer-documentation/api/payments) object when created and read.
 
+**Note:** this API can also be used for [creating recurring payments](https://developer.banked.com/reference#create-a-recurring-payment)
+
 ### Refunds
 
 ```javascript

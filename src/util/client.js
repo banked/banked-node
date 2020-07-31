@@ -8,10 +8,14 @@ const bootstrapClient = keys => {
     timeout: 3000
   });
   instance.interceptors.request.use(config => {
-    config.auth = {
-      username: keys.api_key,
-      password: keys.secret_key
-    };
+    if (keys.access_token) {
+      config.headers.Authorization = `Bearer ${keys.access_token}`;
+    } else {
+      config.auth = {
+        username: keys.api_key,
+        password: keys.secret_key
+      };
+    }
     return config;
   });
   return instance;

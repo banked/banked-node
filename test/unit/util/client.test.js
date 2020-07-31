@@ -32,6 +32,17 @@ describe("Client", () => {
     expect(createConfig.timeout).toBe(3000);
   });
 
+  it("should add an interceptor to axios for oauth auth", () => {
+    expect.assertions(2);
+    bootstrapClient({
+      access_token: "123"
+    });
+    expect(useMock.mock.calls).toHaveLength(1);
+
+    const interceptor = useMock.mock.calls[0][0]({ headers: {} });
+    expect(interceptor.headers.Authorization).toBe("Bearer 123");
+  });
+
   it("should add an interceptor to axios for global auth", () => {
     expect.assertions(4);
     bootstrapClient({

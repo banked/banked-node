@@ -5,6 +5,8 @@ import keysValidator from "./validators/keys";
 import create from "./payments/create";
 import read from "./payments/read";
 import del from "./payments/delete";
+// Refunds
+import createRefund from "./payments/refund/create";
 // Batch Payments
 import createBatch from "./payments/batch/create";
 import readBatch from "./payments/batch/read";
@@ -34,6 +36,9 @@ class Banked {
       batch: {
         create: createBatch,
         read: readBatch
+      },
+      refund: {
+        create: createRefund
       }
     };
     this.webhooks = {

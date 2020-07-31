@@ -83,6 +83,25 @@ const response = await banked.payments.delete('1ae1ce03-dfa9-4593-b487-65c656991
 
 Banked's payments returns a [`paymentSession`](https://banked.com/developer-documentation/api/payments) object when created and read.
 
+### Refunds
+
+```javascript
+const response = await banked.payments.refund.create('1ae1ce03-dfa9-4593-b487-65c656991cb5', {
+  success_url: "https://example.com/success",
+  error_url: "https://example.com/error",
+  reference: "4 Candles",
+  line_items: [
+    {
+      name: "Fork Handles",
+      amount: 1267,
+      currency: "GBP",
+      description: "Four Candles",
+      quantity: 1
+    }
+  ]
+});
+```
+
 ### Webhooks
 
 The library also supports the verification of webhook signatures

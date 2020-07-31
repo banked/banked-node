@@ -89,8 +89,8 @@ describe("Banked", () => {
     });
 
     it("payment methods", () => {
-      expect.assertions(7);
-      expect(Object.keys(banked.payments).length).toBe(4);
+      expect.assertions(9);
+      expect(Object.keys(banked.payments).length).toBe(5);
       expect(typeof banked.payments.create).toBe("function");
       expect(typeof banked.payments.read).toBe("function");
       expect(typeof banked.payments.delete).toBe("function");
@@ -98,6 +98,9 @@ describe("Banked", () => {
       expect(typeof banked.payments.batch).toBe("object");
       expect(typeof banked.payments.batch.create).toBe("function");
       expect(typeof banked.payments.batch.read).toBe("function");
+
+      expect(typeof banked.payments.refund).toBe("object");
+      expect(typeof banked.payments.refund.create).toBe("function");
     });
 
     it("a webhooks object", () => {

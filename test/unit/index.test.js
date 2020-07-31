@@ -89,8 +89,8 @@ describe("Banked", () => {
     });
 
     it("payment methods", () => {
-      expect.assertions(7);
-      expect(Object.keys(banked.payments).length).toBe(4);
+      expect.assertions(9);
+      expect(Object.keys(banked.payments).length).toBe(5);
       expect(typeof banked.payments.create).toBe("function");
       expect(typeof banked.payments.read).toBe("function");
       expect(typeof banked.payments.delete).toBe("function");
@@ -98,6 +98,9 @@ describe("Banked", () => {
       expect(typeof banked.payments.batch).toBe("object");
       expect(typeof banked.payments.batch.create).toBe("function");
       expect(typeof banked.payments.batch.read).toBe("function");
+
+      expect(typeof banked.payments.refund).toBe("object");
+      expect(typeof banked.payments.refund.create).toBe("function");
     });
 
     it("a webhooks object", () => {
@@ -128,14 +131,17 @@ describe("Banked", () => {
     });
 
     it("a bank accounts object", () => {
-      expect.assertions(1);
+      expect.assertions(2);
       expect(typeof banked.bankAccounts).toBe("object");
+      expect(typeof banked.bankAccounts.transactions).toBe("object");
     });
 
     it("bank accounts methods", () => {
-      expect.assertions(2);
-      expect(Object.keys(banked.bankAccounts).length).toBe(1);
+      expect.assertions(4);
+      expect(Object.keys(banked.bankAccounts).length).toBe(2);
       expect(typeof banked.bankAccounts.list).toBe("function");
+      expect(Object.keys(banked.bankAccounts.transactions).length).toBe(1);
+      expect(typeof banked.bankAccounts.transactions.list).toBe("function");
     });
   });
 });

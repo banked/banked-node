@@ -5,6 +5,8 @@ import keysValidator from "./validators/keys";
 import create from "./payments/create";
 import read from "./payments/read";
 import del from "./payments/delete";
+// Refunds
+import createRefund from "./payments/refund/create";
 // Batch Payments
 import createBatch from "./payments/batch/create";
 import readBatch from "./payments/batch/read";
@@ -18,6 +20,7 @@ import deleteWebhook from "./webhooks/delete";
 import listProviders from "./providers/list";
 // Bank Accounts
 import listBankAccounts from "./bank_accounts/list";
+import listTransactions from "./bank_accounts/transactions/list";
 
 class Banked {
   constructor(keys = {}) {
@@ -33,6 +36,9 @@ class Banked {
       batch: {
         create: createBatch,
         read: readBatch
+      },
+      refund: {
+        create: createRefund
       }
     };
     this.webhooks = {
@@ -46,7 +52,10 @@ class Banked {
       list: listProviders
     };
     this.bankAccounts = {
-      list: listBankAccounts
+      list: listBankAccounts,
+      transactions: {
+        list: listTransactions
+      }
     };
   }
 }

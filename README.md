@@ -39,9 +39,9 @@ All of node libraries public methods throw with a `ValidationError` when called 
 
 ## API
 
-### Single Payments
+All methods return a promise (sourced from the [axios](https://github.com/axios/axios) client)
 
-The Banked Node library allows you to create, read and delete payments with the Banked API. All of the payment methods return a promise (sourced from the [axios](https://github.com/axios/axios) client).
+### Single Payments
 
 See [Banked's Payment API docs](https://banked.com/developer-documentation/api/payments) for more information on request and response formats.
 
@@ -80,11 +80,30 @@ const payment = await banked.payments.read('1ae1ce03-dfa9-4593-b487-65c656991cb5
 const response = await banked.payments.delete('1ae1ce03-dfa9-4593-b487-65c656991cb5');
 ```
 
-Banked's payments returns a [`paymentSession`](https://banked.com/developer-documentation/api/payments) object when created and read.
+**Note:** this API can also be used for [creating recurring payments](https://developer.banked.com/reference#create-a-recurring-payment)
+
+### Refunds
+
+```javascript
+const response = await banked.payments.refund.create('1ae1ce03-dfa9-4593-b487-65c656991cb5', {
+  success_url: "https://example.com/success",
+  error_url: "https://example.com/error",
+  reference: "4 Candles",
+  line_items: [
+    {
+      name: "Fork Handles",
+      amount: 1267,
+      currency: "GBP",
+      description: "Four Candles",
+      quantity: 1
+    }
+  ]
+});
+```
 
 ### Batch Payments
 
-The library supports the creating and reading og batch payments. See [Banked's Batch Payment API docs](https://developer.banked.com/reference#the-batch-payments-api) for more information on request and response formats.
+See [Banked's Batch Payment API docs](https://developer.banked.com/reference#the-batch-payments-api) for more information on request and response formats.
 
 ```javascript
 // 1. Create a batch payment
@@ -150,11 +169,21 @@ const verification = await banked.webhooks.validate({
 
 ### Bank Accounts
 
-The libary supports listing the bank acocunts that are connected to your Banked account
+See [Banked's Bank Account API docs](https://developer.banked.com/reference#get-bank-transactions) for more information on request and response formats.
 
 ```javascript
+// List all connected bank accounts
 const bankAccounts = await banked.bankAccounts.list();
+
+// Get transactions for a specific bank account
+const transactions = await banked.bankAccounts.transactions.list({
+  bankAccountID: '1978f41d-a516-41a9-8e86-25093fdbebfb' // (String) Required. The ID of a connect bank account
+  fromDate: '2019-11-01', // (String). Optional. The start date for a date range of transactions,
+  toDate: '2020-02-13' // (String). Optional. The end date for a date range of transactions,
+})
 ````
+
+**Note:** Not supplying a `bankAccountID` will result in a 404 error, as the Banked API will not be able to resolve the path to the correct resource 
 
 ### Providers
 
@@ -163,7 +192,6 @@ The library supports listing the providers available via Banked
 ```javascript
 const providers = await banked.providers.list();
 ```
-
 ## Development
 
 ### Commands

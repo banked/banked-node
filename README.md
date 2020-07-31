@@ -111,9 +111,23 @@ const verification = await banked.webhooks.validate({
 
 ### Bank Accounts
 
+Banked allows you to connect and manage bank accounts via our Console, the Node library enables you to list the accounts you have connected to your account and to get the transactions for one of those accounts.
+
+See [Banked's Bank Account API docs](https://developer.banked.com/reference#get-bank-transactions) for more information on request and response formats.
+
 ```javascript
+// List all connected bank accounts
 const bankAccounts = await banked.bankAccounts.list();
+
+// Get transactions for a specific bank account
+const transactions = await banked.bankAccounts.transactions.list({
+  bankAccountID: '1978f41d-a516-41a9-8e86-25093fdbebfb' // (String) Required. The ID of a connect bank account
+  fromDate: '2019-11-01', // (String). Optional. The start date for a date range of transactions,
+  toDate: '2020-02-13' // (String). Optional. The end date for a date range of transactions,
+})
 ````
+
+**Note:** Not supplying a `bankAccountID` will result in a 404 error, as the Banked API will not be able to resolve the path to the correct resource 
 
 ## Development
 

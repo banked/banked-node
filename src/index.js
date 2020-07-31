@@ -18,6 +18,7 @@ import deleteWebhook from "./webhooks/delete";
 import listProviders from "./providers/list";
 // Bank Accounts
 import listBankAccounts from "./bank_accounts/list";
+import listTransactions from "./bank_accounts/transactions/list";
 
 class Banked {
   constructor(keys = {}) {
@@ -46,7 +47,10 @@ class Banked {
       list: listProviders
     };
     this.bankAccounts = {
-      list: listBankAccounts
+      list: listBankAccounts,
+      transactions: {
+        list: listTransactions
+      }
     };
   }
 }
